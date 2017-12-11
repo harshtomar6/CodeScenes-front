@@ -1,0 +1,54 @@
+#banner{
+  background-image: url('./../../back.jpeg');
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 30% 10%;
+  padding-bottom: 10%; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+#banner h2{
+  font-size: 42px;
+}
+
+#banner p{
+  font-size: 20px;
+}
+
+.sec{
+  padding: 5%;
+}
+
+.sub-head{
+  color: #2C3182;
+  font-weight: bold;
+  font-size: 26px;
+}
+
+.rule{
+  height: 10px;
+  background: #2C3182;
+  border-radius: 10px;
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.post-grid{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+@media(min-width: 768px){
+  #banner{
+    padding: 10%;
+  }
+  .sec{
+    padding: 2%;
+  }
+}

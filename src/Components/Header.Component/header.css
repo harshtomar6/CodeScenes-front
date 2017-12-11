@@ -1,0 +1,140 @@
+header{
+  background: #F9ED69;
+  padding: 20px 15px;
+  padding-bottom: 5px;
+  position: fixed;
+  width: 100%;
+  color: white;
+  box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2);
+  min-height: 75px !important;
+  border-top: 5px solid #2C3182;
+}
+
+header h2{
+  padding: 0;
+  margin: 0;
+  margin-left: 100px;
+  color: #2C3182;
+  display: none;
+  font-family: 'Cuprum';
+  font-size: 2em;
+  font-weight: bold;
+}
+
+header img{
+  position: absolute;
+  left: 20px;
+  top: 10px;
+}
+
+#open{
+  display: none;
+  overflow: hidden;
+}
+
+header i{
+  color: #2C3182;
+  font-size: 32px !important;
+  position: absolute;
+  right: 30px;
+  cursor: pointer;
+}
+
+.btn{
+  padding: 8px 20px;
+  background: #2C3182;
+  color: #fff;
+  border: 2px solid #2C3182;
+}
+
+#collapse{
+  background: rgba(255, 255, 255, 0.9);
+  height: 100vh;
+  position: absolute;
+  width: 100%;
+  top: 70px;
+  left: 0;
+}
+
+#collapse ul{
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+#collapse ul li{
+  list-style: none;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  margin: 15px 0;
+}
+
+#collapse ul li:hover, #open ul li a:hover{
+  background: #2C3182;
+  color: white;
+}
+
+#collapse ul li a{
+  text-decoration: none;
+  color: #2C3182;
+  font-weight: bold;
+  padding: 30px 20px;
+}
+
+
+.close{
+  display: none;
+}
+
+.open{
+  display: inline-block;
+}
+
+@media(min-width : 768px){
+  header h2{
+    display: block;
+  }
+
+  header i{
+    display: none !important;
+  }
+
+  #collapse{
+    display: none !important;
+  }
+
+  #open{
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    padding: 15px;
+  }
+
+  #open ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #open ul li{
+    list-style-type: none;
+    display: inline;
+    font-size: 18px;
+  }
+
+  #open ul li a:hover{
+    background: #2C3182;
+    color: white;
+  }
+
+  #open ul li a{
+    text-decoration: none;
+    color: #2C3182;
+    font-weight: bold; 
+    padding: 40px 20px;
+    transition: all 0.2s;
+  }
+}
+
