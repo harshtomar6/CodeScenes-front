@@ -2,7 +2,8 @@
  import './home.css';
  import Post from './post';
  import { connect } from 'react-redux';
- import { fetchData } from './../../Actions';
+ import { fetchGetData } from './../../Actions';
+ const config = require('./../../config');
  
  class Home extends React.Component{
 
@@ -12,23 +13,30 @@
   }
 
   componentWillMount(){
-    console.log(this.props);
-    this.props.fetch('http://localhost:3001/api/getAllPosts')
-  }
-
-  componentWillReceiveProps(newProps){
-    console.log("Updated" + newProps)
-    console.log(this.props);
+    this.props.fetch(config.SERVER_URI+'/api/getAllPosts')
   }
 
   getPosts(){
     if(this.props.isLoading)
       return <p>Loading...</p>
     else
-      return <Post data={this.props.data[0]}/>
+      return 
   }
 
   render(){
+
+    let getPosts = '';
+
+    if(this.props.isLoading)
+      getPosts = <p>Loading...</p>
+    
+    else if(this.props.hasError)
+      getPosts = <p>An Error Occured</p>
+    else{
+      getPosts = this.props.data.map( post => 
+        <Post key={post._id} data={post}/>
+      ) 
+    }
     return(
       <div>
         <div id="banner">
@@ -40,16 +48,14 @@
           <h3 className="sub-head">Latest Posts</h3>
           <div className="rule"></div>
           <div className="post-grid">
-            <this.getPosts />
+            {getPosts}
           </div>
         </div>
         <div id="h-third" className="sec">
           <h3 className="sub-head">Popular Posts</h3>
           <div className="rule"></div>
           <div className="post-grid">
-            <Post />
-            <Post />
-            <Post />
+            {getPosts}
           </div>
         </div>
       </div>
@@ -65,7 +71,7 @@
  })
 
  const mapDispatchToProps = (dispatch) => ({
-   fetch: (url) => {dispatch(fetchData(url))}
+   fetch: (url) => {dispatch(fetchGetData(url))}
  })
 
  export default connect(mapStateToProps, mapDispatchToProps)(Home);

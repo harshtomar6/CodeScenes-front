@@ -1,13 +1,5 @@
 
-export const loginAction = (data) => {
-  return {
-    type: 'LOGIN',
-    payload: data
-  }
-}
-
 export const isLoading = (bool) => {
-  console.log('loading');
   return {
     type: 'IS_LOADING',
     isLoading: bool
@@ -15,7 +7,6 @@ export const isLoading = (bool) => {
 }
 
 export const isErrored = (bool) => {
-  console.log('error');
   return{
     type: 'ERROR_WHILE_LOADING',
     hasError: bool
@@ -23,29 +14,56 @@ export const isErrored = (bool) => {
 }
 
 export const fetchDataSucess = (data) => {
-  console.log(data);
   return{
     type: 'DATA_SUCCESS',
     data
   }
 }
 
-export const fetchData = (url) => {
+export const fetchGetData = (url) => {
   return (dispatch) => {
-    console.log("Fetch Called")
     dispatch(isLoading(true));
 
     fetch(url)
       .then(res => {
         if(!res.ok)
           throw Error(res.statusText);
-
+        return res;
+      })
+      .then(res => res.json())
+      .then(data => {        
+        dispatch(fetchDataSucess(data));
         dispatch(isLoading(false));
+      })
+      .catch(() => {
+        dispatch(isErrored(true));
+        dispatch(isLoading(false));
+      });
+  }
+}
+
+export const fetchPostData = (url, data) => {
+  return (dispatch) => {
+    dispatch(isLoading(true));
+
+    fetch(url, {
+      method: 'post',
+      body: JSON.stringify(data)
+    })
+      .then(res => {
+        if(!res.ok)
+          return dispatch(isErrored(true));
 
         return res;
       })
       .then(res => res.json())
-      .then(data => dispatch(fetchDataSucess(data)))
-      .catch(() => dispatch(isErrored(true)));
+      .then(data => {
+        dispatch(fetchDataSucess(data));
+        dispatch(isLoading(false));
+      })
+      .catch(() => {
+        dispatch(isErrored(true));
+        dispatch(isLoading(false));
+      });
   }
 }

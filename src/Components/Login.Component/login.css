@@ -1,0 +1,28 @@
+#login{
+  padding-top: 100px; 
+  background: url("./../../login-back.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover; 
+  min-height: 100vh;
+}
+
+#login-wraper{
+  width: 90%;
+  margin: 10px auto;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 30px;
+  padding-bottom: 60px;
+  border-radius: 20px;
+}
+
+.form-control{
+  padding: 10px 5px;
+  height: 3em;
+}
+
+@media(min-width: 768px){
+  #login-wraper{
+    width: 450px;
+  }
+}

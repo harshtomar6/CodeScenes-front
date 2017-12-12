@@ -1,15 +1,18 @@
 
 let initialState = {
-  loggedIn: false,
-  data: []
+  data: null,
+  isLoading: true,
+  hasError: false
 }
 
 const user = (state = initialState, action) => {
   switch(action.type){
-    case 'LOGIN':
-      console.log('ho gya h');
-      console.log(action.payload);
-      return state;
+    case 'IS_LOADING':
+      return Object.assign({}, state, {isLoading: action.isLoading});
+    case 'ERROR_WHILE_LOADING':
+      return Object.assign({}, state, {hasError: action.hasError});
+    case 'DATA_SUCCESS':
+      return Object.assign({}, state, {data: action.data});
     default:
       return state;
   }

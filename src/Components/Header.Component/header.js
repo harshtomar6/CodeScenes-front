@@ -25,10 +25,18 @@ class Header extends React.Component{
       })
   }
 
+  handleHomeClick(){
+    this.setState({
+      class: 'close'
+    })
+  }
+
   render(){
     return(
       <header>
-        <Link to="/"><img src={Logo} style={{width: '60px', height: '50px'}} alt="Logo"/></Link>
+        <Link to="/" onClick={this.handleHomeClick.bind(this)}>
+          <img src={Logo} style={{width: '60px', height: '50px'}} alt="Logo"/>
+        </Link>
         <h2>Code Scenes</h2>
         <div id="open">
           <ul>
@@ -48,16 +56,18 @@ class Header extends React.Component{
         <i className="fa fa-bars" onClick={this.handleClick.bind(this)}></i>
         <div id="collapse" className={this.state.class}>
           <ul>
-            <li><Link to="/posts">Posts</Link></li>
-            <li><Link to="/writer">Become a Writer</Link></li>
-            <li><Link to="/about">About</Link></li>
+            <li><Link to="/posts" onClick={this.handleClick.bind(this)}>Posts</Link></li>
+            <li><Link to="/writer" onClick={this.handleClick.bind(this)}>Become a Writer</Link></li>
+            <li><Link to="/about" onClick={this.handleClick.bind(this)}>About</Link></li>
             <li>
               <Link to="/login">
-                <button className="btn">Login</button>
+                <button className="btn" onClick={this.handleClick.bind(this)}>Login</button>
               </Link>
             </li>
             <li>
-            <button className="btn">Signup</button>
+              <Link to='/signup'>
+                <button className="btn" onClick={this.handleClick.bind(this)}>Signup</button>
+              </Link>
             </li>
           </ul>
         </div>

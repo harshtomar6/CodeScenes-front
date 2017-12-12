@@ -7,14 +7,14 @@ header{
   color: white;
   box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2);
   min-height: 75px !important;
-  border-top: 5px solid #2C3182;
+  border-top: 5px solid #291f71;;
 }
 
 header h2{
   padding: 0;
   margin: 0;
   margin-left: 100px;
-  color: #2C3182;
+  color: #291f71;
   display: none;
   font-family: 'Cuprum';
   font-size: 2em;
@@ -33,7 +33,7 @@ header img{
 }
 
 header i{
-  color: #2C3182;
+  color: #291f71;
   font-size: 32px !important;
   position: absolute;
   right: 30px;
@@ -42,9 +42,13 @@ header i{
 
 .btn{
   padding: 8px 20px;
-  background: #2C3182;
+  background: #291f71;
   color: #fff;
-  border: 2px solid #2C3182;
+  border: 2px solid #291f71;;
+}
+
+.btn:hover{
+  color: white;
 }
 
 #collapse{
@@ -71,13 +75,13 @@ header i{
 }
 
 #collapse ul li:hover, #open ul li a:hover{
-  background: #2C3182;
+  background: #291f71;;
   color: white;
 }
 
 #collapse ul li a{
   text-decoration: none;
-  color: #2C3182;
+  color: #291f71;;
   font-weight: bold;
   padding: 30px 20px;
 }
@@ -125,13 +129,13 @@ header i{
   }
 
   #open ul li a:hover{
-    background: #2C3182;
+    background: #291f71;;
     color: white;
   }
 
   #open ul li a{
     text-decoration: none;
-    color: #2C3182;
+    color: #291f71;;
     font-weight: bold; 
     padding: 40px 20px;
     transition: all 0.2s;
