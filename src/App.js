@@ -7,6 +7,7 @@ import Home from './Components/home.component/home';
 import Two from './Components/two.component/Two';
 import Header from './Components/Header.Component/header';
 import Footer from './Components/Footer.Component/footer';
+import AddPost from './Components/AddPost.Component/addPost';
 
 class App extends Component {
 
@@ -19,6 +20,7 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route exact path='/two' component={Two} />
           <Route path='/login' component={Login} />
+          <Route path='/new-post' component={AddPost} />
           <Footer />
         </div>
       </Router>
