@@ -3,6 +3,7 @@
  import Post from './post';
  import { connect } from 'react-redux';
  import { fetchGetData } from './../../Actions';
+ import { Link } from 'react-router-dom';
  const config = require('./../../config');
  
  class Home extends React.Component{
@@ -34,7 +35,7 @@
       getPosts = <p>An Error Occured</p>
     else{
       getPosts = this.props.data.map( post => 
-        <Post key={post._id} data={post}/>
+        <Link to='/harshtomar6/asd'><Post key={post._id} data={post}/></Link>
       ) 
     }
     return(

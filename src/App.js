@@ -4,10 +4,10 @@ import Login from './Components/Login.Component/login';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Home from './Components/home.component/home';
-import Two from './Components/two.component/Two';
 import Header from './Components/Header.Component/header';
 import Footer from './Components/Footer.Component/footer';
 import AddPost from './Components/AddPost.Component/addPost';
+import ViewPost from './Components/ViewPost.Component/viewPost';
 
 class App extends Component {
 
@@ -18,9 +18,9 @@ class App extends Component {
         <div>
           <Header />
           <Route exact path='/' component={Home} />
-          <Route exact path='/two' component={Two} />
           <Route path='/login' component={Login} />
           <Route path='/new-post' component={AddPost} />
+          <Route path="/:username/:post" component={ViewPost} />
           <Footer />
         </div>
       </Router>
