@@ -52,6 +52,11 @@ header i{
   color: white;
 }
 
+.btn:focus{
+  color: #fff;
+  outline: none;
+}
+
 #collapse{
   background: rgba(255, 255, 255, 0.9);
   height: 100vh;
@@ -73,6 +78,7 @@ header i{
   text-align: center;
   font-size: 18px;
   margin: 15px 0;
+  font-family: 'Varela Round';
 }
 
 #collapse ul li:hover, #open ul li a:hover{
@@ -87,6 +93,9 @@ header i{
   padding: 30px 20px;
 }
 
+.no-hover{
+  background: transparent !important;
+}
 
 .close{
   display: none;
@@ -127,6 +136,7 @@ header i{
     list-style-type: none;
     display: inline;
     font-size: 18px;
+    font-family: 'Varela Round';
   }
 
   #open ul li a:hover{

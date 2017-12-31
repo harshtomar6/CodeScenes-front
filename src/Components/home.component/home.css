@@ -1,5 +1,5 @@
 #banner{
-  background-image: url('./../../back.jpeg');
+  background-image: url('./../../back3.jpeg');
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
@@ -13,11 +13,14 @@
 }
 
 #banner h2{
-  font-size: 42px;
+  font-size: 46px;
+  font-weight: 900;
+  font-family: 'Cuprum';
 }
 
 #banner p{
   font-size: 20px;
+  font-family: 'Varela Round';
 }
 
 .sec{
@@ -27,11 +30,12 @@
 .sub-head{
   color: #291f71;
   font-weight: bold;
-  font-size: 26px;
+  font-size: 28px;
+  font-family: 'Varela Round';
 }
 
 .rule{
-  height: 10px;
+  height: 8px;
   background:#291f71;
   border-radius: 10px;
   width: 100px;
@@ -44,11 +48,23 @@
   justify-content: space-around;
 }
 
+#overlay{
+  margin: 0px auto;
+  background-color: #fff;
+}
+
 @media(min-width: 768px){
   #banner{
     padding: 10%;
   }
   .sec{
     padding: 2%;
+  }
+  #overlay{
+    width: 95%;
+    position: relative;
+    top: -70px;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   }
 }

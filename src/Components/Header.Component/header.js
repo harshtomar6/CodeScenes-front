@@ -43,12 +43,12 @@ class Header extends React.Component{
             <li><Link to="/posts">Posts</Link></li>
             <li><Link to="/writer">Become a Writer</Link></li>
             <li><Link to="/about">About</Link></li>
-            <li>
-              <Link to="/login">
+            <li className="no-hover">
+              <Link to="/login" className="no-hover">
                 <button className="btn">Login</button>
               </Link>
             </li>
-            <li>
+            <li className="no-hover">
             <button className="btn">Signup</button>
             </li>
           </ul>

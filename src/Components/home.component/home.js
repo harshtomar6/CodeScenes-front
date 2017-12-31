@@ -45,18 +45,20 @@
           <div className="rule" style={{background: '#fff'}}></div>
           <p className="text-center">Code Scenes is all about something that i dont know. <br/>basically is is to write code to kill boredom</p>
         </div>
-        <div id="h-second" className="sec">
-          <h3 className="sub-head">Latest Posts</h3>
-          <div className="rule"></div>
-          <div className="post-grid">
-            {getPosts}
+        <div id="overlay">
+          <div id="h-second" className="sec">
+            <h3 className="sub-head">Latest Posts</h3>
+            <div className="rule"></div>
+            <div className="post-grid">
+              {getPosts}
+            </div>
           </div>
-        </div>
-        <div id="h-third" className="sec">
-          <h3 className="sub-head">Popular Posts</h3>
-          <div className="rule"></div>
-          <div className="post-grid">
-            {getPosts}
+          <div id="h-third" className="sec">
+            <h3 className="sub-head">Popular Posts</h3>
+            <div className="rule"></div>
+            <div className="post-grid">
+              {getPosts}
+            </div>
           </div>
         </div>
       </div>

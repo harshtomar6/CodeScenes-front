@@ -10,7 +10,7 @@ class Post extends React.Component{
           <img src={thumb} alt="Post Thumb" className="img-responsive" />
         </div>
         <div className="post-title">
-          <h4>{this.props.data.title}</h4>
+          <h3>{this.props.data.title}</h3>
           <p>{this.props.data.content}</p>
         </div>
       </div>
