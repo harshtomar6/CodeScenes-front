@@ -5,7 +5,7 @@ header{
   position: fixed;
   width: 100%;
   color: white;
-  box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   min-height: 75px !important;
   border-top: 5px solid #291f71;
   z-index: 5;

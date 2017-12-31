@@ -43,7 +43,9 @@
         <div id="banner">
           <h2>Code Scenes</h2>
           <div className="rule" style={{background: '#fff'}}></div>
-          <p className="text-center">Code Scenes is all about something that i dont know. <br/>basically is is to write code to kill boredom</p>
+          <p className="text-center">Make coding not only your profession but your habit. 
+            <br/>Learn to make cool stuff with Code Scenes.
+            </p>
         </div>
         <div id="overlay">
           <div id="h-second" className="sec">
