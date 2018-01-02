@@ -5,8 +5,8 @@
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   margin-top: 15px;
   margin-bottom: 15px; 
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 140px 210px;
 }
 
 .post-card:hover{
@@ -15,11 +15,11 @@
 
 .post-thumb img{
   width: 140px;
-  height: 200px;
+  height: 100%;
 }
 
 .post-title{
-  padding: 10px;
+  padding: 10px 20px;
   background-color: #291f71;
 }
 

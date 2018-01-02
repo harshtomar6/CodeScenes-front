@@ -11,7 +11,8 @@ class Post extends React.Component{
         </div>
         <div className="post-title">
           <h3>{this.props.data.title}</h3>
-          <p>{this.props.data.content}</p>
+          <p>Posted By: <br/> {this.props.data.author.name}</p>
+          <p></p>
         </div>
       </div>
     );

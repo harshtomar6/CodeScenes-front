@@ -1,4 +1,4 @@
-#banner{
+.banner{
   background-image: url('./../../back3.jpeg');
   background-position: center;
   background-attachment: fixed;
@@ -12,13 +12,13 @@
   color: white;
 }
 
-#banner h2{
+.banner h2{
   font-size: 46px;
   font-weight: 900;
   font-family: 'Cuprum';
 }
 
-#banner p{
+.banner p{
   font-size: 20px;
   font-family: 'Varela Round';
 }
@@ -48,19 +48,19 @@
   justify-content: space-around;
 }
 
-#overlay{
+.overlay{
   margin: 0px auto;
   background-color: #fff;
 }
 
 @media(min-width: 768px){
-  #banner{
+  .banner{
     padding: 10%;
   }
   .sec{
     padding: 2%;
   }
-  #overlay{
+  .overlay{
     width: 95%;
     position: relative;
     top: -70px;
