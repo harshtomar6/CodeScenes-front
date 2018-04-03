@@ -2,33 +2,56 @@
  import './home.css';
  import Post from './post';
  import Loader from './../Loader.Component/loader';
- import { connect } from 'react-redux';
- import { fetchGetData } from './../../Actions';
+ import Header from './../Header.Component/header';
  import { Link } from 'react-router-dom';
- const config = require('./../../config');
- 
+ let GLOBALS = require('./../../globals');
+
  class Home extends React.Component{
+  
+  constructor(){
+    super();
+    this.state = {
+      data: [],
+      isLoading: false,
+      isError: false
+    }
+  }
 
   componentWillMount(){
-    this.props.fetch(config.SERVER_URI+'/api/getAllPosts')
+    console.log('Mounted');
+    if(GLOBALS.homeData.length > 0)
+      this.setState({data: GLOBALS.homeData})
+    else{
+      this.setState({isLoading: true})
+      GLOBALS.getData('/api/post', (err, data) => {
+        this.setState({isLoading: false})
+        if(err)
+          this.setState({isError: true})
+        else{
+          this.setState({data: data})
+          GLOBALS.homeData = data
+        }
+      })
+    }
   }
 
   render(){
 
     let getPosts = '';
 
-    if(this.props.isLoading)
+    if(this.state.isLoading)
       getPosts = <Loader />
     
-    else if(this.props.hasError)
+    else if(this.state.isError)
       getPosts = <p>An Error Occured</p>
     else{
-      getPosts = this.props.data.map( post => 
+      getPosts = this.state.data.map( post => 
         <Link to={post.link+'?id='+post.id} key={post.id}><Post data={post} /></Link>
       ) 
     }
     return(
       <div>
+        <Header />
         <div className="banner">
           <h2>Code Scenes</h2>
           <div className="rule" style={{background: '#fff'}}></div>
@@ -58,14 +81,4 @@
 
  }
 
- const mapStateToProps = (state) => ({
-  data: state.home.data,
-  isLoading: state.home.isLoading,
-  hasError: state.home.hasError
- })
-
- const mapDispatchToProps = (dispatch) => ({
-   fetch: (url) => {dispatch(fetchGetData(url))}
- })
-
- export default connect(mapStateToProps, mapDispatchToProps)(Home);
+ export default Home;

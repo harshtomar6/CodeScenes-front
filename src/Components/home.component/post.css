@@ -1,26 +1,28 @@
 .post-card{
-  width: 350px;
+  min-width: 90%;
   background: #fff;
   box-shadow: 0 3px 10px rgba(0,0,0,0.16), 0 3px 10px rgba(0,0,0,0.23);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   margin-top: 15px;
-  margin-bottom: 15px; 
-  display: grid;
-  grid-template-columns: 140px 210px;
+  margin-bottom: 15px;
 }
 
 .post-card:hover{
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
-.post-thumb img{
-  width: 140px;
-  height: 100%;
+.post-thumb{
+  background: url('./../../back.jpeg');
+  background-size: cover;
+  background-position: center;
+  padding: 10% 5%;
+  text-align: center;
 }
 
 .post-title{
   padding: 10px 20px;
-  background-color: #291f71;
+  background-color: #fff;
+  color: #000;
 }
 
 .post-title h3{
@@ -29,4 +31,10 @@
 
 .post-title p{
   font-family: 'Varela Round';
+}
+
+@media(min-width: 768px){
+  .post-card{
+    width: 350px;
+  }  
 }

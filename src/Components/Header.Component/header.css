@@ -1,5 +1,4 @@
 header{
-  background: rgba(250, 246, 77, 1);
   padding: 20px 15px;
   padding-bottom: 5px;
   position: fixed;
@@ -7,7 +6,6 @@ header{
   color: white;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   min-height: 75px !important;
-  border-top: 5px solid #291f71;
   z-index: 5;
 }
 
@@ -15,7 +13,6 @@ header h2{
   padding: 0;
   margin: 0;
   margin-left: 100px;
-  color: #291f71;
   display: none;
   font-family: 'Cuprum';
   font-size: 2em;
@@ -34,7 +31,6 @@ header img{
 }
 
 header i{
-  color: #291f71;
   font-size: 32px !important;
   position: absolute;
   right: 30px;
@@ -43,9 +39,7 @@ header i{
 
 .btn{
   padding: 8px 20px;
-  background: #291f71;
   color: #fff;
-  border: 2px solid #291f71;;
 }
 
 .btn:hover{
@@ -60,16 +54,18 @@ header i{
 #collapse{
   background: rgba(255, 255, 255, 0.9);
   height: 100vh;
-  position: absolute;
   width: 100%;
-  top: 70px;
+  position: absolute;
+  top: -110vh;
   left: 0;
+  overflow: hidden;
+  transition: all 0.5s;
 }
 
 #collapse ul{
   width: 100%;
   padding: 0;
-  margin: 0;
+  margin-top: 20px;
 }
 
 #collapse ul li{
@@ -82,27 +78,27 @@ header i{
 }
 
 #collapse ul li:hover, #open ul li a:hover{
-  background: #291f71;;
+  background: #291f71;
   color: white;
 }
 
 #collapse ul li a{
   text-decoration: none;
-  color: #291f71;;
   font-weight: bold;
   padding: 30px 20px;
 }
 
+#close{
+  font-weight: 700;
+  font-size: 4em;
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+  margin-right: 25px;
+}
+
 .no-hover{
   background: transparent !important;
-}
-
-.close{
-  display: none;
-}
-
-.open{
-  display: inline-block;
 }
 
 @media(min-width : 768px){
@@ -146,7 +142,6 @@ header i{
 
   #open ul li a{
     text-decoration: none;
-    color: #291f71;;
     font-weight: bold; 
     padding: 40px 20px;
     transition: all 0.2s;

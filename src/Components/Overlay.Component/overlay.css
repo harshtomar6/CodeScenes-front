@@ -1,0 +1,32 @@
+#overlay-wrap{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: all 1s;
+}
+
+#overlay-container{
+  width: 90%;
+  background: #fff;
+  padding: 20px;
+  padding-bottom: 0px; 
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+@media(min-width: 768px){
+  #overlay-container{
+    width: 450px;
+  }
+}
