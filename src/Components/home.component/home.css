@@ -16,6 +16,7 @@
   font-size: 46px;
   font-weight: 900;
   font-family: 'Cuprum';
+  text-align: center;
 }
 
 .banner p{
@@ -48,6 +49,10 @@
   justify-content: space-around;
 }
 
+.post-grid a{
+  width: 100%;
+}
+
 .overlay{
   margin: 0px auto;
   background-color: #fff;
@@ -66,5 +71,9 @@
     top: -70px;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+
+  .post-grid a{
+    width: initial;
   }
 }

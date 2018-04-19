@@ -1,0 +1,40 @@
+#editorControls{
+  display: flex;
+  justify-content: space-between;
+  margin: 10px auto;
+  background: #fff;
+  padding-bottom: 5px;
+  border-bottom: 0.5px solid #c1c1c1;
+}
+
+#editorControls ul{
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+#editorControls ul li{
+  display: inline;
+  cursor: pointer;
+}
+
+#editorControls ul li button{
+  background-color: white;
+  border: 0px;
+  padding: 5px 10px;
+  font-size: 0.9em;
+  color: #c1c1c1;
+  font-weight: bold;
+}
+
+#editorControls ul li button:hover{
+  background: rgba(0,0,0,0.1);
+}
+
+.controlActive{
+  color: rgb(41, 31, 113) !important; 
+}
+
+.controlInactive{
+  color: #c1c1c1 !important;
+}

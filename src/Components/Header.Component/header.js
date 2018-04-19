@@ -1,8 +1,9 @@
 import React from 'react';
 import './header.css';
 import Logo from './../../codeScenesLogo.png';
+import avatar from './../../avatar.png';
 import { Link } from 'react-router-dom';
-let GLOBALS = require('./../../globals');
+import ProfileDropdown from './profileDropdown';
 let globalStyles = require('./../../styles');
 
 class Header extends React.Component{
@@ -10,18 +11,52 @@ class Header extends React.Component{
   constructor(){
     super();
     this.state = {
-      loggedIn: false
+      loggedIn: false,
+      userData: null
     }
   }
 
   componentWillMount(){
+    let loggedIn = localStorage.getItem('loggedIn');
+    let userData = localStorage.getItem('userData');
+    if(loggedIn)
+      userData = JSON.parse(userData).user
+    else
+      userData = ''
     this.setState({
-      loggedIn: GLOBALS.loggedIn
+      loggedIn: JSON.parse(loggedIn),
+      userData: userData
     })
   }
 
   componentDidMount(){
     document.getElementById('collapse').style.top = '-110vh';
+    
+    let header = document.getElementsByTagName('header')[0];
+    let currentOffset = window.pageYOffset;
+    
+    window.onscroll = function(){
+      if(currentOffset - window.pageYOffset < 0){
+        header.style.marginTop = '-80px';
+      }
+      else{
+        header.style.marginTop = '0px';
+      }
+      currentOffset = window.pageYOffset;
+
+      let editor = document.getElementById('editorControls');
+      if(editor && currentOffset > 350){
+        editor.style.position = 'fixed';
+        editor.style.top = '-10px';
+        editor.style.width = '90%';
+      }
+
+      if(editor && currentOffset < 350){
+        editor.style.position = 'relative';
+        editor.style.width = '100%';
+      }
+      
+    };
   }
 
   handleClick(){
@@ -44,7 +79,7 @@ class Header extends React.Component{
     return(
       <header style={styles.header}>
         <Link to="/" onClick={this.handleHomeClick.bind(this)}>
-          <img src={Logo} style={{width: '60px', height: '50px'}} alt="Logo"/>
+          <img src={Logo} style={{width: '60px', height: '50px'}} alt="Logo" id="logo"/>
         </Link>
         <h2 style={{color: globalStyles.primaryCaretColor}}>Code Scenes</h2>
         <div id="open">
@@ -52,10 +87,21 @@ class Header extends React.Component{
             <li><Link to="/posts" style={{color: globalStyles.primaryCaretColor}}
               >Posts</Link>
             </li>
-            <li><Link to="/writer" style={{color: globalStyles.primaryCaretColor}}>Become a Writer</Link></li>
+            <li>
+              {
+                this.state.loggedIn ? 
+                <Link to="/user/posts" style={{color: globalStyles.primaryCaretColor}}>My Posts</Link> :
+                <Link to="/writer" style={{color: globalStyles.primaryCaretColor}}>Become a Writer</Link>
+              }
+              
+            </li>
             <li><Link to="/about" style={{color: globalStyles.primaryCaretColor}}>About</Link></li>
             {this.state.loggedIn ? 
-              <li style={{color: globalStyles.primaryCaretColor}}>Profile</li>
+              <li className="no-hover">
+                <ProfileDropdown dp={this.state.userData.avatar === 'none' ? avatar : this.state.userData.avatar} 
+                  name={this.state.userData.name} 
+                  description={this.state.userData.description}/>
+              </li>
             : 
             <li className="no-hover"> 
               <Link to="/login" className="no-hover">
@@ -63,9 +109,12 @@ class Header extends React.Component{
               </Link>
             </li>
             }
-            <li className="no-hover">
-            <button className="btn" style={styles.btn}>Signup</button>
-            </li>
+            {
+              this.state.loggedIn? '': <li className="no-hover">
+              <button className="btn" style={styles.btn}>Signup</button>
+              </li>
+            }
+            
             
           </ul>
         </div>
@@ -113,8 +162,10 @@ class Header extends React.Component{
 
 const styles = {
   header: {
+    position: 'normal',
     backgroundColor: globalStyles.primaryBackgroundColor,
     borderTop: '5px solid '+ globalStyles.primaryCaretColor,
+    marginTop: 0
   },
   btn: {
     backgroundColor: globalStyles.primaryCaretColor,

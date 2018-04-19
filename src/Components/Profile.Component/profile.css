@@ -1,0 +1,14 @@
+.span-tag{
+  font-family: 'Varela Round';
+  font-size: 1.5em;
+  margin: 10px;
+  color: rgb(41, 31, 113);
+}
+
+.span-val{
+  font-family: 'Varela Round';
+  font-size: 1.5em;
+  margin: 10px;
+  color: #999;
+  text-align: end;
+}

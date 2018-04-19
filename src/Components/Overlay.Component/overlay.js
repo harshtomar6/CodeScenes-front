@@ -19,7 +19,7 @@ export default class Overlay extends React.Component {
   toggleOverlay(){
     let ele = document.getElementById('overlay-wrap');
     let body = document.getElementsByTagName('body')[0];
-    if(ele.style.opacity === 0){
+    if(ele.style.opacity === '0'){
       ele.style.width = '100vw';
       ele.style.zIndex = 1000;
       ele.style.opacity = 1;

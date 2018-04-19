@@ -7,6 +7,7 @@ header{
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   min-height: 75px !important;
   z-index: 5;
+  transition: all 0.5s;
 }
 
 header h2{
@@ -19,7 +20,7 @@ header h2{
   font-weight: bold;
 }
 
-header img{
+header #logo{
   position: absolute;
   left: 20px;
   top: 10px;
@@ -79,7 +80,7 @@ header i{
 
 #collapse ul li:hover, #open ul li a:hover{
   background: #291f71;
-  color: white;
+  color: white !important;
 }
 
 #collapse ul li a{
@@ -136,7 +137,7 @@ header i{
   }
 
   #open ul li a:hover{
-    background: #291f71;;
+    background: #291f71;
     color: white;
   }
 

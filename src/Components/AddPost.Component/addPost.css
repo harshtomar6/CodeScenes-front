@@ -1,5 +1,5 @@
 .head-section{
-  background-image: url('./../../back.jpeg');
+  background-color: #364950;
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
@@ -25,14 +25,86 @@
   outline: none;
 }
 
-#addPost-bottom{
-  
+.head-section input::placeholder{
+  color: #c1c1c1;
 }
 
-#addPost-bottom textarea{
-  width: 350px;
-  margin: 10px 30px;
+#editor-wraper{
+  padding: 30px;
+  font-family: 'Varela Round';
 }
+
+#editor-wraper h1{
+  margin: 60px 0px;
+  font-weight: 900;
+}
+
+#editor-wraper h2{
+  margin: 40px 0px;
+}
+
+#editor-wraper p{
+  font-size: 1.5em;
+  line-height: 1.6em;
+  margin: 30px 10px;
+}
+
+#editor-wraper li {
+  font-size: 1.5em;
+}
+
+.RichEditor-root {
+  background: #fff;
+  border: 1px solid #ddd;
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  padding: 15px;
+}
+
+.RichEditor-editor {
+  margin-top: 10px;
+}
+
+.RichEditor-editor .public-DraftEditorPlaceholder-root,
+.RichEditor-editor .public-DraftEditor-content {
+  margin: 0 -15px -15px;
+  padding: 15px;
+}
+
+.RichEditor-editor .public-DraftEditor-content {
+  min-height: 100px;
+}
+
+.RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
+  display: none;
+}
+
+.RichEditor-editor .RichEditor-blockquote {
+  border-left: 5px solid rgb(41, 31, 113);
+  color: #666;
+  font-family: 'Hoefler Text', 'Georgia', serif;
+  font-style: italic;
+  margin: 16px 0;
+  padding: 10px 20px;
+  font-size: 1.2em;
+}
+
+.RichEditor-editor .public-DraftStyleDefault-pre {
+  background-color: #323232;
+  font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
+  font-size: 16px;
+  padding: 20px;
+}
+
+pre{
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-size: 16px;
+  background: #323232;
+  color: #fff;
+}
+
 
 @media(min-width: 768px){
   .head-section{

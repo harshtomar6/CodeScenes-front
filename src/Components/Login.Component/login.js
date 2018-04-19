@@ -19,19 +19,21 @@ class Login extends React.Component{
 
   handleSubmit(e){
     e.preventDefault();
-    this.overlay.toggleOverlay();;
+    this.overlay.toggleOverlay();
     GLOBALS.postData('/user/login', {
       email: this.email.value,
       password: this.password.value
     }, (err, data) => {
       this.overlay.toggleOverlay();
       
+      console.log(err, data)
       if(err)
         this.setState({isError: true})
       else{
-        //console.log(err, data)
         GLOBALS.userData = data;
         GLOBALS.loggedIn = true;
+        localStorage.setItem('loggedIn', 'true');
+        localStorage.setItem('userData', JSON.stringify(data));
         this.props.history.push('/');
       }
     })

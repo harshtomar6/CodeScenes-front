@@ -26,13 +26,17 @@
       GLOBALS.getData('/api/post', (err, data) => {
         this.setState({isLoading: false})
         if(err)
-          this.setState({isError: true})
+          this.setState({isError: err, data:data})
         else{
           this.setState({data: data})
           GLOBALS.homeData = data
         }
       })
     }
+  }
+
+  componentDidMount(){
+    document.title = 'CodeScenes | Make coding not only you profession but your habit'
   }
 
   render(){
@@ -43,7 +47,7 @@
       getPosts = <Loader />
     
     else if(this.state.isError)
-      getPosts = <p>An Error Occured</p>
+      getPosts = <p>An error Occured</p>
     else{
       getPosts = this.state.data.map( post => 
         <Link to={post.link+'?id='+post.id} key={post.id}><Post data={post} /></Link>
