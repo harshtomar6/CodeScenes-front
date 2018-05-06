@@ -1,9 +1,9 @@
 import React from 'react';
 import './login.css';
-import Header from './..//Header.Component/header';
 import Loader from './../Loader.Component/loader';
 import Overlay from './../Overlay.Component/overlay';
-let GLOBALS = require('./../../globals');
+import { logInUser } from './../../actions';
+import { connect } from 'react-redux';
 
 class Login extends React.Component{
 
@@ -17,26 +17,17 @@ class Login extends React.Component{
     }
   }
 
-  handleSubmit(e){
+  async handleSubmit(e){
     e.preventDefault();
     this.overlay.toggleOverlay();
-    GLOBALS.postData('/user/login', {
+
+    await this.props.logInUser({
       email: this.email.value,
       password: this.password.value
-    }, (err, data) => {
-      this.overlay.toggleOverlay();
-      
-      console.log(err, data)
-      if(err)
-        this.setState({isError: true})
-      else{
-        GLOBALS.userData = data;
-        GLOBALS.loggedIn = true;
-        localStorage.setItem('loggedIn', 'true');
-        localStorage.setItem('userData', JSON.stringify(data));
-        this.props.history.push('/');
-      }
-    })
+    });
+    this.overlay.toggleOverlay();
+    if(this.props.user.loggedIn)
+      this.props.history.push('/');
   }
 
   componentDidMount(){
@@ -46,7 +37,6 @@ class Login extends React.Component{
   render(){
     return (
       <div>
-      <Header />
       <div id="login">
         <div id="login-wraper">
           <h3 className="text-center sub-head">Login</h3><br/><br/>
@@ -73,4 +63,8 @@ class Login extends React.Component{
   }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps, { logInUser })(Login);

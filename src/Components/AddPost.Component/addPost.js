@@ -1,11 +1,10 @@
 import React from 'react';
 import './addPost.css';
-import Header from './../Header.Component/header';
 import { Editor, EditorState, RichUtils, getDefaultKeyBinding, DefaultDraftBlockRenderMap } from 'draft-js'; 
 import Immutable from 'immutable';
 import { stateToHTML } from 'draft-js-export-html';
 import EditorControl from './editorControls';
-let GLOBALS = require('./../../globals');
+import { postData } from './../../globals';
 
 class AddPost extends React.Component {
 
@@ -115,31 +114,33 @@ class AddPost extends React.Component {
     }
   }
 
-  handleSubmit = () => {
+  handleSubmit = async () => {
     let { editorState } = this.state;
     let content = stateToHTML(editorState.getCurrentContent()).toString();
     let author = localStorage.getItem('userData')
     author = JSON.parse(author);
 
-    GLOBALS.postData({
-        path: '/api/post',
-        headers: {
-          'X-Access-Token': author.token,
-          'X-Key': author.user._id
-        }
-      }, {
-        title: this.state.title,
-        content: content,
-        isPublished: true
-      }, (err, data) => {
-        console.log(err, data);
-    })
+    let res = await postData({
+      path: '/api/post',
+      headers: {
+        'X-Access-Token': author.token,
+        'X-Key': author.user._id
+      }
+    }, {
+      title: this.state.title,
+      content: content,
+      isPublished: true
+    });
+    
+    if(res.err)
+      console.log(res.err);
+    else
+      console.log(res.data);
   }
 
   render(){
     return (
       <div>
-      <Header />
       <div className="wrap" style={{paddingTop: '60px'}}>
         <div className="head-section">
           <input type="text" className="form-input title-head" placeholder={this.state.title} 

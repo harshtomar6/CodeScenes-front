@@ -12,7 +12,7 @@
 }
 
 .post-thumb{
-  background: url('./../../back.jpeg');
+  background: url('./../../assets/back.jpeg');
   background-size: cover;
   background-position: center;
   padding: 10% 5%;

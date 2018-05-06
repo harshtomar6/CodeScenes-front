@@ -1,0 +1,9 @@
+
+export const LOG_IN_REQUEST = 'LOG_IN_REQUEST'
+export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS'
+export const LOG_IN_ERROR = 'LOG_IN_ERROR'
+export const LOG_OUT = 'LOG_OUT'
+
+export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST'
+export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS'
+export const FETCH_POSTS_ERROR = 'FETCH_POSTS_ERROR'

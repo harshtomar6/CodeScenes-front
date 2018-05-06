@@ -1,28 +1,13 @@
 import React from 'react';
 import './profile.css';
-import Header from './../Header.Component/header';
-import ProfilBack from './../../profile-back.jpg';
-import avatar from './../../avatar.png';
+import ProfilBack from './../../assets/profile-back.jpg';
+import avatar from './../../assets/avatar.png';
+import { connect } from 'react-redux'; 
 
-export default class extends React.Component {
-
-  constructor(){
-    super();
-    this.state = {
-      userData: ''
-    }
-  }
-
-  componentWillMount(){
-    let userData = JSON.parse(localStorage.getItem('userData')).user;
-
-    this.setState({userData});
-  }
-
+class Profile extends React.Component {
   render(){
     return (
       <div>
-        <Header />
         <div className="banner" style={{backgroundImage: `url(${ProfilBack})`}}>
           <h2>My Profile</h2>
           <div className="rule" style={{background: '#fff'}}></div>
@@ -30,7 +15,7 @@ export default class extends React.Component {
         <div className="overlay">
           <div className="sec" style={{display: 'flex', flexDirection: 'column'}}>
             <div style={{display: 'flex', justifyContent: 'center', padding: '20px'}}>
-              <img src={this.state.userData.avatar === 'none' ? avatar : this.state.userData.avatar} 
+              <img src={this.props.user.avatar === 'none' ? avatar : this.props.user.avatar} 
                 style={{width: '200px', height: '200px', borderRadius: '100px'}} alt="Avatar" />
             </div>
 
@@ -41,7 +26,7 @@ export default class extends React.Component {
                 </div>
               </div>
               <div style={{display: 'flex',flex: 1, justifyContent: 'flex-start'}}>
-                <span className="span-val">{this.state.userData.name}</span> 
+                <span className="span-val">{this.props.user.name}</span> 
               </div>
             </div>
             <div style={{display: 'flex', justifyContent:'center'}}>
@@ -51,7 +36,7 @@ export default class extends React.Component {
                 </div>
               </div>
               <div style={{display: 'flex',flex: 1, justifyContent: 'flex-start'}}>
-                <span className="span-val">{this.state.userData.description}</span> 
+                <span className="span-val">{this.props.user.description}</span> 
               </div>
             </div>
             <div style={{display: 'flex', justifyContent:'center'}}>
@@ -61,7 +46,7 @@ export default class extends React.Component {
                 </div>
               </div>
               <div style={{display: 'flex',flex: 1, justifyContent: 'flex-start'}}>
-                <span className="span-val">{this.state.userData.email}</span> 
+                <span className="span-val">{this.props.user.email}</span> 
               </div> 
             </div>
           </div>
@@ -70,3 +55,9 @@ export default class extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.user.userData.user
+})
+
+export default connect(mapStateToProps)(Profile);

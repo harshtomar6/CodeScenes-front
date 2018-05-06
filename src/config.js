@@ -1,3 +1,1 @@
-module.exports = {
-  SERVER_URI: 'http://localhost:3001'
-}
+export const SERVER_URI = 'https://code-scenes.herokuapp.com';

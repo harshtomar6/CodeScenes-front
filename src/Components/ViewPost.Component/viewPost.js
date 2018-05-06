@@ -1,9 +1,8 @@
 import React from 'react';
 import './viewPost.css';
 import Loader from './../Loader.Component/loader';
-import Header from './../Header.Component/header';
 import ReactHtmlParser from 'react-html-parser';
-let GLOBALS = require('../../globals');
+import { getData } from './../../globals';
 
 class ViewPost extends React.Component {
   
@@ -16,19 +15,16 @@ class ViewPost extends React.Component {
     }
   }
 
-  componentWillMount(){
+  async componentDidMount(){
     let postId = this.props.location.search.split('=')[1];
-    GLOBALS.getData('/api/post/'+postId, (err, data) => {
-      if(err)
-        this.setState({hasError: true, isLoading: false});
-      else{
-        this.setState({data: data, isLoading: false});
-        console.log(data);
-      }
-    });
-  }
+    
+    let res = await getData('/api/post/'+postId);
 
-  componentDidMount(){
+    if(res.err)
+      this.setState({hasError: true, isLoading: false});
+    else
+      this.setState({data: res.data, isLoading: false});
+
     window.scrollTo(0, 0);
     document.title = this.props.match.params.post.split('-').join(' ') +' | Code Scenes';
   }
@@ -55,7 +51,6 @@ class ViewPost extends React.Component {
     }
     return(
       <div className="wrap">
-        <Header />
         <div className="banner" style={styles.banner}>
           <div className="imageOverlay"></div>
           <h2 style={{zIndex: 2}}>{

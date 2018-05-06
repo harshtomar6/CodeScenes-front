@@ -2,9 +2,9 @@
  import './home.css';
  import Post from './post';
  import Loader from './../Loader.Component/loader';
- import Header from './../Header.Component/header';
  import { Link } from 'react-router-dom';
- let GLOBALS = require('./../../globals');
+ import { connect } from 'react-redux';
+ import { fetchPosts } from './../../actions';
 
  class Home extends React.Component{
   
@@ -17,45 +17,32 @@
     }
   }
 
-  componentWillMount(){
-    console.log('Mounted');
-    if(GLOBALS.homeData.length > 0)
-      this.setState({data: GLOBALS.homeData})
-    else{
-      this.setState({isLoading: true})
-      GLOBALS.getData('/api/post', (err, data) => {
-        this.setState({isLoading: false})
-        if(err)
-          this.setState({isError: err, data:data})
-        else{
-          this.setState({data: data})
-          GLOBALS.homeData = data
-        }
-      })
-    }
-  }
-
   componentDidMount(){
-    document.title = 'CodeScenes | Make coding not only you profession but your habit'
+    document.title = 'CodeScenes | Make coding not only you profession but your habit';
+    
+    const { posts } = this.props;
+
+    if(posts.data.length === 0)
+      this.props.fetchPosts();
   }
 
   render(){
 
     let getPosts = '';
+    const { posts } = this.props
 
-    if(this.state.isLoading)
+    if(posts.isLoading)
       getPosts = <Loader />
     
-    else if(this.state.isError)
+    else if(posts.hasError)
       getPosts = <p>An error Occured</p>
     else{
-      getPosts = this.state.data.map( post => 
+      getPosts = posts.data.map( post => 
         <Link to={post.link+'?id='+post.id} key={post.id}><Post data={post} /></Link>
       ) 
     }
     return(
       <div>
-        <Header />
         <div className="banner">
           <h2>Code Scenes</h2>
           <div className="rule" style={{background: '#fff'}}></div>
@@ -71,18 +58,14 @@
               {getPosts}
             </div>
           </div>
-          <div id="h-third" className="sec">
-            <h3 className="sub-head">Popular Posts</h3>
-            <div className="rule"></div>
-            <div className="post-grid">
-              {getPosts}
-            </div>
-          </div>
         </div>
       </div>
     );
   }
-
  }
 
- export default Home;
+ const mapStateToProps = state => ({
+  posts: state.post
+ });
+
+ export default connect(mapStateToProps, { fetchPosts })(Home);

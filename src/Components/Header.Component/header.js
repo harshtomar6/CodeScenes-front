@@ -1,7 +1,8 @@
 import React from 'react';
 import './header.css';
-import Logo from './../../codeScenesLogo.png';
-import avatar from './../../avatar.png';
+import { connect } from 'react-redux';
+import Logo from './../../assets/codeScenesLogo.png';
+import avatar from './../../assets/avatar.png';
 import { Link } from 'react-router-dom';
 import ProfileDropdown from './profileDropdown';
 let globalStyles = require('./../../styles');
@@ -14,19 +15,6 @@ class Header extends React.Component{
       loggedIn: false,
       userData: null
     }
-  }
-
-  componentWillMount(){
-    let loggedIn = localStorage.getItem('loggedIn');
-    let userData = localStorage.getItem('userData');
-    if(loggedIn)
-      userData = JSON.parse(userData).user
-    else
-      userData = ''
-    this.setState({
-      loggedIn: JSON.parse(loggedIn),
-      userData: userData
-    })
   }
 
   componentDidMount(){
@@ -59,7 +47,7 @@ class Header extends React.Component{
     };
   }
 
-  handleClick(){
+  handleClick = () => {
     let ele = document.getElementById('collapse');
     if(ele.style.top === '-110vh'){
       ele.style.top = '0px'
@@ -89,18 +77,18 @@ class Header extends React.Component{
             </li>
             <li>
               {
-                this.state.loggedIn ? 
+                this.props.user.loggedIn ? 
                 <Link to="/user/posts" style={{color: globalStyles.primaryCaretColor}}>My Posts</Link> :
                 <Link to="/writer" style={{color: globalStyles.primaryCaretColor}}>Become a Writer</Link>
               }
               
             </li>
             <li><Link to="/about" style={{color: globalStyles.primaryCaretColor}}>About</Link></li>
-            {this.state.loggedIn ? 
+            {this.props.user.loggedIn ? 
               <li className="no-hover">
-                <ProfileDropdown dp={this.state.userData.avatar === 'none' ? avatar : this.state.userData.avatar} 
-                  name={this.state.userData.name} 
-                  description={this.state.userData.description}/>
+                <ProfileDropdown dp={this.props.user.userData.user.avatar === 'none' ? avatar : this.props.user.userData.user.avatar} 
+                  name={this.props.user.userData.user.name} 
+                  description={this.props.user.userData.user.description}/>
               </li>
             : 
             <li className="no-hover"> 
@@ -110,7 +98,7 @@ class Header extends React.Component{
             </li>
             }
             {
-              this.state.loggedIn? '': <li className="no-hover">
+              this.props.user.loggedIn? '': <li className="no-hover">
               <button className="btn" style={styles.btn}>Signup</button>
               </li>
             }
@@ -119,37 +107,37 @@ class Header extends React.Component{
           </ul>
         </div>
         <i className="fa fa-bars" 
-          onClick={this.handleClick.bind(this)} 
+          onClick={this.handleClick} 
           style={{color: globalStyles.primaryCaretColor}}>
         </i>
         <div id="collapse">
-          <span id="close" onClick={this.handleClick.bind(this)} style={{color: globalStyles.primaryCaretColor}}>
+          <span id="close" onClick={this.handleClick} style={{color: globalStyles.primaryCaretColor}}>
             &times;
           </span>
           <ul>
             <li className="no-hover">
-              <Link to="/posts" onClick={this.handleClick.bind(this)} style={{color: globalStyles.primaryCaretColor}}>
+              <Link to="/posts" onClick={this.handleClick} style={{color: globalStyles.primaryCaretColor}}>
               Posts</Link>
             </li>
             <li className="no-hover">
-              <Link to="/writer" onClick={this.handleClick.bind(this)} style={{color: globalStyles.primaryCaretColor}}>
+              <Link to="/writer" onClick={this.handleClick} style={{color: globalStyles.primaryCaretColor}}>
                 Become a Writer</Link>
             </li>
             <li className="no-hover">
-              <Link to="/about" onClick={this.handleClick.bind(this)} style={{color: globalStyles.primaryCaretColor}}>
+              <Link to="/about" onClick={this.handleClick} style={{color: globalStyles.primaryCaretColor}}>
                 About</Link>
             </li>
             <li className="no-hover">{this.state.loggedIn ? 
               <Link to="" style={{color: globalStyles.primaryCaretColor}}>Dashboard</Link>:
               <Link to="/login">
-                <button className="btn" onClick={this.handleClick.bind(this)}
+                <button className="btn" onClick={this.handleClick}
                   style={styles.btn}>Login</button>
               </Link>
             }
             </li>
             <li className="no-hover">
               <Link to='/signup'>
-                <button className="btn" onClick={this.handleClick.bind(this)}
+                <button className="btn" onClick={this.handleClick}
                  style={styles.btn}>Signup</button>
               </Link>
             </li>
@@ -173,4 +161,8 @@ const styles = {
   }
 }
 
-export default Header;
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps)(Header);

@@ -1,44 +1,35 @@
-let config = require('./config');
+import { SERVER_URI } from './config';
 
-module.exports = {
-  homeData: [],
-  userData: {},
-  loggedIn: false,
+export let homeData = [];
+export let userData =  {};
+export let loggedIn = false;
 
-  getData: (path, callback) => {
-    fetch(config.SERVER_URI+path)
-    .then(res => res.json())
-    .then(res => {
-      if(res.err)
-        return callback(true, res.err);
-      
-      return callback(false, res.data);
-    })
-    .catch(err => {
-      return callback(true, err);
-    })
-  },
+export const getData = async path => {
+  try{
+    let resObj = await fetch(SERVER_URI+path)
+    let res = await resObj.json();
 
-  postData: (path, data, callback) => {
-    let fetchPath = typeof path === 'string' ? config.SERVER_URI+path: config.SERVER_URI+path.path
-    console.log(fetchPath);
-    fetch(fetchPath, {
+    return res;
+  }catch(err){
+    return {err: err, data: null};
+  }
+}
+
+export const postData = async (path, data) => {
+  let fetchPath = typeof path === 'string' ? SERVER_URI+path: SERVER_URI+path.path;
+
+  try{
+    let resObj = await fetch(fetchPath, {
       method: 'post',
       headers: typeof path === 'string' ? 
         {'Content-Type': 'application/json'}: 
         Object.assign({'Content-Type': 'application/json'}, path.headers),
       body: JSON.stringify(data)
-    })
-    .then(res => res.json())
-    .then(res => {
-      if(res.err)
-        return callback(true, res.err)
-      else
-        return callback(false, res.data)
-    })
-    .catch(err => {
-      return callback(true, err);
-    })
-  }
+    });
+    let res = await resObj.json();
 
+    return res;
+  }catch(err){
+    return {err: err, data: null};
+  }
 }

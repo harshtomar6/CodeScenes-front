@@ -1,15 +1,17 @@
 import React from 'react';
+import { logOutUser } from './../../actions';
+import { connect } from 'react-redux';
 
-export default class Logout extends React.Component {
+class Logout extends React.Component {
 
-  componentWillMount(){
-    localStorage.removeItem('loggedIn');
-    localStorage.removeItem('userData');
+  componentDidMount(){
+    this.props.logOutUser();
     this.props.history.push('/');
   }
 
   render(){
     return <div></div>
   }
-
 }
+
+export default connect(null, { logOutUser })(Logout);
