@@ -2,63 +2,51 @@ import React from 'react';
 import './viewPost.css';
 import Loader from './../Loader.Component/loader';
 import ReactHtmlParser from 'react-html-parser';
-import { getData } from './../../globals';
+import { connect } from 'react-redux';
+import { fetchSinglePost } from './../../actions';
 
 class ViewPost extends React.Component {
-  
-  constructor(){
-    super();
-    this.state = {
-      data: null,
-      isLoading: true,
-      hasError: false
-    }
-  }
 
-  async componentDidMount(){
-    let postId = this.props.location.search.split('=')[1];
-    
-    let res = await getData('/api/post/'+postId);
-
-    if(res.err)
-      this.setState({hasError: true, isLoading: false});
-    else
-      this.setState({data: res.data, isLoading: false});
-
+  componentDidMount(){
     window.scrollTo(0, 0);
     document.title = this.props.match.params.post.split('-').join(' ') +' | Code Scenes';
+    let postId = this.props.location.search.split('=')[1];
+    
+    if(this.props.post.data._id !== postId)
+      this.props.fetchSinglePost(postId);
   }
 
   render(){
     let postContent = '';
+    const { post } = this.props
 
     const styles = {
       banner: {
-        backgroundImage: !this.state.isLoading && !this.state.hasError ? 
-          this.state.data.headerImage === 'none' ? '#364950' : `url(${this.state.data.headerImage})` :
+        backgroundImage: !post.isLoading && !post.hasError ? 
+          post.data.headerImage === 'none' ? '#364950' : `url(${post.data.headerImage})` :
           '',
         position: 'relative'
       }
     }
 
-    if(this.state.isLoading)
+    if(post.isLoading)
       postContent = <Loader />
-    else if(this.state.hasError)
+    else if(post.hasError)
       postContent = <p>An Error Occured</p>
     else{
-      console.log(this.state.data.content)
-      postContent = ReactHtmlParser(this.state.data.content);
+      console.log(post.data.content)
+      postContent = ReactHtmlParser(post.data.content);
     }
     return(
       <div className="wrap">
         <div className="banner" style={styles.banner}>
           <div className="imageOverlay"></div>
           <h2 style={{zIndex: 2}}>{
-            this.state.isLoading || this.state.hasError? '-' : this.state.data.title
+            post.isLoading || post.hasError? '-' : post.data.title
           }</h2>
           <h4 style={{textAlign: 'center', fontFamily: 'Varela Round', zIndex: 2}}>
-            Posted By {this.state.isLoading || this.state.hasError ? '-': this.state.data.author.name} on 
-            <br /> {this.state.isLoading || this.state.hasError ? '-' : new Date(this.state.data.timestamp).toDateString()}
+            Posted By {post.isLoading || post.hasError ? '-': post.data.author.name} on 
+            <br /> {post.isLoading || post.hasError ? '-' : new Date(post.data.timestamp).toDateString()}
           </h4>
           
         </div>
@@ -83,4 +71,8 @@ class ViewPost extends React.Component {
 
 }
 
-export default ViewPost;
+const mapStateToProps = state => ({
+  post: state.singlePost
+})
+
+export default connect(mapStateToProps, { fetchSinglePost })(ViewPost);

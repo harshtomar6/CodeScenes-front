@@ -13,3 +13,16 @@ export const fetchPosts = () => {
       })
   }
 }
+
+export const fetchSinglePost = postId => {
+  return dispatch => {
+    dispatch({type: actionTypes.FETCH_SINGLE_POST_REQUEST});
+    return getData('/api/post/'+postId)
+      .then(res => {
+        if(res.err)
+          dispatch({type: actionTypes.FETCH_SINGLE_POST_ERROR, payload: res.err})
+        else
+          dispatch({type: actionTypes.FETCH_SINGLE_POST_SUCCESS, payload: res.data})
+      })
+  }
+}  

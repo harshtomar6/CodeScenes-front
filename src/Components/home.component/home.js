@@ -65,7 +65,7 @@
  }
 
  const mapStateToProps = state => ({
-  posts: state.post
+  posts: state.posts
  });
 
  export default connect(mapStateToProps, { fetchPosts })(Home);

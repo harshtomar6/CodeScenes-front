@@ -19,3 +19,23 @@ export const postReducer = (state=initialState, action) => {
       return state
   }
 }
+
+let singleInitialState = {
+  isLoading: true,
+  hasError: false,
+  errMsg: '',
+  data: {}
+}
+
+export const singlePostReducer = (state=singleInitialState, action) => {
+  switch(action.type){
+    case actionTypes.FETCH_SINGLE_POST_REQUEST:
+      return {...state, isLoading: true}
+    case actionTypes.FETCH_SINGLE_POST_SUCCESS:
+      return {...state, isLoading: false, data: action.payload}
+    case actionTypes.FETCH_SINGLE_POST_ERROR:
+      return {...state, isLoading: false, hasError: true, errMsg: action.payload}
+    default:
+      return state
+  }
+}
