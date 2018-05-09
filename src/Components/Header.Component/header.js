@@ -64,6 +64,7 @@ class Header extends React.Component{
   }
 
   render(){
+    console.log(Logo);
     return(
       <header style={styles.header}>
         <Link to="/" onClick={this.handleHomeClick.bind(this)}>

@@ -39,3 +39,21 @@ export const singlePostReducer = (state=singleInitialState, action) => {
       return state
   }
 }
+
+let draftState = {
+  isLoading: false,
+  hasError: false,
+  errMsg: '',
+  data: []
+}
+
+export const addPostReducer = (state=draftState, action) => {
+  switch(action.type){
+    case actionTypes.ADD_POST_REQUEST:
+      return {...state, isLoading: true}
+    case actionTypes.ADD_POST_SUCCESS:
+      return {...state, isLoading: false, data: action.payload}
+    case actionTypes.ADD_POST_ERROR:
+      return {...state, isLoading: false, hasError: true, errMsg: action.payload}
+  }
+}

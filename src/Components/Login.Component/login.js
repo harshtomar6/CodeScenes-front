@@ -4,6 +4,7 @@ import Loader from './../Loader.Component/loader';
 import Overlay from './../Overlay.Component/overlay';
 import { logInUser } from './../../actions';
 import { connect } from 'react-redux';
+import { GOOGLE_LOGIN_URI } from './../../config';
 
 class Login extends React.Component{
 
@@ -54,7 +55,8 @@ class Login extends React.Component{
               ref = { (node) => this.password = node } required/>
           </div><br/>
           <input type="submit" className="btn" style={{width: '100%'}} value="Log In" /> 
-          </form>     
+          </form>
+          <a href={ GOOGLE_LOGIN_URI }>Continue With Google</a>     
         </div>
       </div>
       <Overlay ref={e => this.overlay = e} children={() => <Loader />}/>
