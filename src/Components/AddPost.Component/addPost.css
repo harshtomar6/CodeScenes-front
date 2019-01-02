@@ -31,7 +31,7 @@
 
 #editor-wraper{
   padding: 30px;
-  font-family: 'Varela Round';
+  font-family: 'Noto Serif';
 }
 
 #editor-wraper h1{
@@ -44,8 +44,8 @@
 }
 
 #editor-wraper p{
-  font-size: 1.5em;
-  line-height: 1.6em;
+  font-size: 18px;
+  line-height: 1.8;
   margin: 30px 10px;
 }
 

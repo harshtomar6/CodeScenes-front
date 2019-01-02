@@ -4,7 +4,7 @@ import Login from './Components/Login.Component/login';
 import { Route, Switch } from 'react-router-dom';
 import Home from './Components/home.component/home';
 import Footer from './Components/Footer.Component/footer';
-import AddPost from './Components/AddPost.Component/addPost';
+import TextEditor from './Components/AddPost.Component';
 import ViewPost from './Components/ViewPost.Component/viewPost';
 import Logout from './Components/Login.Component/logout';
 import Profile from './Components/Profile.Component/profile';
@@ -21,7 +21,7 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route path='/login' render={props => <Login {...props}/>} />
           <Route path='/logout' component={Logout} />
-          <Route path='/new-post' component={AddPost} />
+          <Route path='/new-post' component={TextEditor} />
           <Route path='/profile' component={Profile} />
           <Route path='/dashboard' component={Dashboard} />
           <Route exact path="/:username/:post" component={ViewPost} />

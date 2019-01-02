@@ -75,6 +75,7 @@ class AddPost extends React.Component {
   _mapKeyToEditorCommand = (e)  => {
     console.log(e.keyCode)
     if (e.keyCode === 9 /* TAB */) {
+      console.log("tab presed")
       e.preventDefault();
       const newEditorState = RichUtils.onTab(
         e,
