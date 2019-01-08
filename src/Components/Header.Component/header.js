@@ -30,22 +30,20 @@ class Header extends React.Component{
       else{
         header.style.marginTop = '0px';
       }
+      let newToolBar = document.querySelector('.rdw-editor-toolbar');
+      // if(newToolBar && (currentOffset-window.pageYOffset) < 0)
+      //   newToolBar.style.top = '20px'
+      // else
+      //   newToolBar.style.top = '200px'
       currentOffset = window.pageYOffset;
 
-      // let editor = document.getElementById('editorControls');
-      // if(editor && currentOffset > 350){
-      //   editor.style.position = 'fixed';
-      //   editor.style.top = '-10px';
-      //   editor.style.width = '90%';
-      // }
-
-      // if(editor && currentOffset < 350){
-      //   editor.style.position = 'relative';
-      //   editor.style.width = '100%';
-      // }
-
-      // let newToolBar = document.querySelector('.rdw-editor-toolbar');
-      // newToolBar.style.top = '30px'
+      if(newToolBar && window.pageYOffset >= 180){
+        newToolBar.style.position = 'fixed';
+        newToolBar.style.top = '20px';
+      }
+      else
+        newToolBar.style.position = 'initial'
+      
       
     };
   }

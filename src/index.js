@@ -7,12 +7,20 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import configStore from './store';
 
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:3001/'
+})
+
 ReactDOM.render(
-  <Provider store={configStore()}>
+  <ApolloProvider client={client}>
     <BrowserRouter>
       <Route path='/' component={App} />
     </BrowserRouter>
-  </Provider>, 
-  document.getElementById('root'));
+  </ApolloProvider>, 
+  document.getElementById('root')
+);
 
 registerServiceWorker();
