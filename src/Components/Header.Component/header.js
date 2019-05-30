@@ -37,12 +37,15 @@ class Header extends React.Component{
       //   newToolBar.style.top = '200px'
       currentOffset = window.pageYOffset;
 
-      if(newToolBar && window.pageYOffset >= 180){
-        newToolBar.style.position = 'fixed';
-        newToolBar.style.top = '20px';
+      if(newToolBar){
+
+        if(window.pageYOffset >= 180){
+          newToolBar.style.position = 'fixed';
+          newToolBar.style.top = '20px';
+        }
+        else
+          newToolBar.style.position = 'initial'
       }
-      else
-        newToolBar.style.position = 'initial'
       
       
     };
@@ -65,7 +68,6 @@ class Header extends React.Component{
   }
 
   render(){
-    console.log(Logo);
     return(
       <header style={styles.header}>
         <Link to="/" onClick={this.handleHomeClick.bind(this)}>
@@ -77,16 +79,16 @@ class Header extends React.Component{
             <li><Link to="/posts" style={{color: globalStyles.primaryCaretColor}}
               >Posts</Link>
             </li>
-            <li>
+            {/* <li>
               {
                 this.props.user.loggedIn ? 
                 <Link to="/user/posts" style={{color: globalStyles.primaryCaretColor}}>My Posts</Link> :
                 <Link to="/writer" style={{color: globalStyles.primaryCaretColor}}>Become a Writer</Link>
               }
               
-            </li>
+            </li> */}
             <li><Link to="/about" style={{color: globalStyles.primaryCaretColor}}>About</Link></li>
-            {this.props.user.loggedIn ? 
+            {/* {this.props.user.loggedIn ? 
               <li className="no-hover">
                 <ProfileDropdown dp={this.props.user.userData.user.avatar === 'none' ? avatar : this.props.user.userData.user.avatar} 
                   name={this.props.user.userData.user.name} 
@@ -103,7 +105,7 @@ class Header extends React.Component{
               this.props.user.loggedIn? '': <li className="no-hover">
               <button className="btn" style={styles.btn}>Signup</button>
               </li>
-            }
+            } */}
             
             
           </ul>
@@ -167,4 +169,4 @@ const mapStateToProps = state => ({
   user: state.user
 })
 
-export default connect(mapStateToProps)(Header);
+export default Header;

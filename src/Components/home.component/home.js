@@ -12,9 +12,9 @@
   }
 
   render(){
-    const getPosts = this.props.posts.data.map( post => 
-        <Link to={post.link+'?id='+post.id} key={post.id}><Post data={post} /></Link>
-      ) 
+    // const getPosts = this.props.posts.data.map( post => 
+    //     <Link to={post.link+'?id='+post.id} key={post.id}><Post data={post} /></Link>
+    //   ) 
     return(
       <div>
         <div className="banner">
@@ -29,7 +29,7 @@
             <h3 className="sub-head">Latest Posts</h3>
             <div className="rule"></div>
             <div className="post-grid">
-              {getPosts}
+              No Posts
             </div>
           </div>
         </div>
@@ -42,4 +42,4 @@
   posts: state.posts
  });
 
- export default WithApiCall(mapStateToProps, fetchPosts)(Home);
+ export default Home;
